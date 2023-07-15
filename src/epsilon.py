@@ -6,7 +6,7 @@ from Config.models import *
 # .py Methods
 from VoiceToText.transcript import *
 from ChatText.chat import *
-from LanguageModel.check_request import *
+from LanguageModel.validate_request import *
 from LanguageModel.language_model import *
 
 # Opción de chat de texto
