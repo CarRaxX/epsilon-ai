@@ -1,8 +1,23 @@
-# pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 typing
-#openai
 SpeechRecognition
 soundfile
 termcolor
 Unidecode
-git+https://github.com/openai/whisper.git 
+pymongo
+
+#pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#openai
+#pip install -U openai-whisper
+#llama-cpp-python CUBLAS:
+# pip install scikit-build
+# git clone https://github.com/abetlen/llama-cpp-python.git
+# cd llama-cpp-python
+# cd vendor
+# git clone https://github.com/ggerganov/llama.cpp
+# cd ..
+# set LLAMA_CUBLAS=1
+# set FORCE_CMAKE=1
+# set CMAKE_ARGS="-DLLAMA_CUBLAS=ON"
+# python setup.py install
+# echo "Done. The llama-cpp folder with the CUBLAS dll is under your_folder\Lib\site-packages\llama-cpp-python-xxx.vers-py3.10-win-amd64.egg\llama-cpp"
+# echo "You can use this folder to replace your old folder"

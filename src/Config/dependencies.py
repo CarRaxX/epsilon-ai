@@ -13,6 +13,7 @@ import unidecode
 import openai
 import json
 import subprocess
+import pymongo
 from llama_cpp import Llama
 from termcolor import colored
 from queue import Queue

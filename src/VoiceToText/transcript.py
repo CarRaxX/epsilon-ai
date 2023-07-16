@@ -2,6 +2,7 @@
 from Config.dependencies import logging, os, Queue, whisper, torch, datetime
 from Config.dependencies import numpy as np, speech_recognition as sr, soundfile as sf
 from Config.dependencies import time
+from Config.configuration import global_config
 
 # Función para grabar audio hasta que se detecte silencio
 
@@ -15,7 +16,7 @@ def record_audio(request_audio_queue: Queue, energy: int = 300, pause_threshold:
 
     with sr.Microphone(sample_rate=16000) as source:
         while True:
-            logging.info("Epsilon está escuchando...")
+            logging.info("" + global_config['ai_interpreter'] + " está escuchando...")
             # Obtenemos el audio del micrófono
             audio = r.listen(source)
             # Procesamos el audio
@@ -28,7 +29,7 @@ def record_audio(request_audio_queue: Queue, energy: int = 300, pause_threshold:
             if save_file and file_path and file_name:
                 save_audio_file(file_path, file_name, audio_data)
 
-            logging.info("Epsilon ha escuchado")
+            logging.info("" + global_config['ai_interpreter'] + " ha escuchado")
             # Introducimos la petición en la cola de audio
             request_audio_queue.put(audio_data)
             # Dejamos de grabar

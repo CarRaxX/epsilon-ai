@@ -1,9 +1,10 @@
 # Imports
 from Config.dependencies import logging, Queue
+from Config.configuration import global_config
 
 def get_input_text(request_text_queue: Queue) -> None:
     # Generamos la entrada de texto
-    logging.info('Epsilon está esperando tu petición por texto...')
+    logging.info('' + global_config['ai_interpreter'] + ' está esperando tu petición por texto...')
     while True:
         request = input('Inserte su petición: ')
         if request.strip():  # Si la entrada no está vacía después de eliminar espacios en blanco

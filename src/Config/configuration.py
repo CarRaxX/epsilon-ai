@@ -10,6 +10,7 @@ logging.basicConfig(level=logging.INFO,
 # All
 global_config = {
     'human_interpreter': human_interpreter,
+    'ai_interpreter': ai_interpreter,
     'request_audio_queue': Queue(),  # Cola de petición por Audio
     'request_text_queue': Queue(),  # Cola de petición por Texto
     'response_audio_queue': Queue(),  # Cola de respuesta por Audio
@@ -64,14 +65,20 @@ config_open_ai_generate_text = {
 }
 
 config_llama_cpp_generate_text = {
-    'llama_cpp_model_path': llama_cpp_model_path,
-    'llama_cpp_max_ctx_tokens': 512,
-    'llama_cpp_instruccion': llama_cpp_instruccion,
-    'llama_cpp_chat_example': llama_cpp_chat_example,
+    'llama_cpp_model_directory_path': llama_cpp_model_directory_path,
+    'llama_cpp_max_context_tokens': 1020,
+    'llama_cpp_epsilon_personality': llama_cpp_epsilon_personality,
+    'llama_cpp_epsilon_init_chat': llama_cpp_epsilon_init_chat,
     'llama_cpp_stop': llama_cpp_stop,
     'llama_cpp_max_predict_tokens': 125,
     'llama_cpp_temperature': 0.5,
     'llama_cpp_top_p': 1,
     'llama_cpp_repeat_penalty': 1.1,
     'llama_cpp_top_k': 50
+}
+
+config_dba = {
+    'dbHsot': dbHsot,
+    'dbName': 'epsilon_db',
+    'collection_ctx_chat_name': 'ctx_chat'
 }
