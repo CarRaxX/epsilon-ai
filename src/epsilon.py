@@ -39,10 +39,10 @@ def text_chat_option() -> None:
         # Si se da una petición, se formula al modelo de lenguaje
         if global_config['is_epsilon_request']:
             # 4.Formulamos la petición al Modelo de Lenguaje y obtenemos su respuesta
-            llama_cpp_model_generate_text(request_text_queue, response_text_queue, llm_model, config_llama_cpp_generate_text['llama_cpp_epsilon_personality'], config_llama_cpp_generate_text['llama_cpp_epsilon_init_chat'], config_llama_cpp_generate_text['llama_cpp_max_predict_tokens'],
+            llama_cpp_model_generate_text(request_text_queue, response_text_queue, llm_model, config_llama_cpp_generate_text['llama_cpp_epsilon_personality'], config_llama_cpp_generate_text['llama_cpp_epsilon_init_chat'], config_llama_cpp_generate_text['llama_cpp_epsilon_ctx_days'], config_llama_cpp_generate_text['llama_cpp_max_predict_tokens'],
                                             config_llama_cpp_generate_text['llama_cpp_temperature'], config_llama_cpp_generate_text['llama_cpp_top_p'], config_llama_cpp_generate_text['llama_cpp_stop'], 
                                             config_llama_cpp_generate_text['llama_cpp_repeat_penalty'], config_llama_cpp_generate_text['llama_cpp_top_k'])
-            # TODO - guardar chat en BBDD
+            
             
     exit_option()
 
@@ -61,6 +61,10 @@ def voice_chat_option() -> None:
     response_text_queue = global_config['response_text_queue']
     # Cola de respuesta por Audio
     response_audio_queue = global_config['response_audio_queue']
+    # BBDD
+    init_db()
+    # Seleccionamos el modelo a usar y lo cargamos en memoria
+    llm_model = options_models_menu()
     # Cargamos el modelo de Wishper para escuchar
     whisper_model = load_whisper_model(
         config_transcribe['type_model'])  # Modelo de Wishper
@@ -82,15 +86,17 @@ def voice_chat_option() -> None:
         # Si se da una petición, se formula al modelo de lenguaje
         if global_config['is_epsilon_request']:
             # 4.Formulamos la petición al Modelo de Lenguaje y obtenemos su respuesta
-            open_ai_model_generate_text(request_text_queue, response_text_queue, config_open_ai_generate_text['open_ai_key'], config_open_ai_generate_text['open_ai_model'], config_open_ai_generate_text['open_ai_model_personality'], config_open_ai_generate_text[
-                'open_ai_model_temperature'], config_open_ai_generate_text['open_ai_model_max_tokens'], config_open_ai_generate_text['open_ai_model_top_p'], config_open_ai_generate_text['open_ai_model_frequency_penalty'], config_open_ai_generate_text['open_ai_model_presence_penalty'])
-
+            llama_cpp_model_generate_text(request_text_queue, response_text_queue, llm_model, config_llama_cpp_generate_text['llama_cpp_epsilon_personality'], config_llama_cpp_generate_text['llama_cpp_epsilon_init_chat'], config_llama_cpp_generate_text['llama_cpp_epsilon_ctx_days'], config_llama_cpp_generate_text['llama_cpp_max_predict_tokens'],
+                                            config_llama_cpp_generate_text['llama_cpp_temperature'], config_llama_cpp_generate_text['llama_cpp_top_p'], config_llama_cpp_generate_text['llama_cpp_stop'], 
+                                            config_llama_cpp_generate_text['llama_cpp_repeat_penalty'], config_llama_cpp_generate_text['llama_cpp_top_k'])
+            
     exit_option()
 
 # Opción de chat de salir
 
 
 def exit_option() -> None:
+    exit_db()
     logging.info('' + global_config['ai_interpreter'] + ' se va a dormir.')
     exit()
 

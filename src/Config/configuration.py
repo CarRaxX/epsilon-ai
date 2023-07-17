@@ -52,23 +52,13 @@ config_check = {
 
 # LanguageModel
 # language_model.py
-# open_ai_model_generate_text
-config_open_ai_generate_text = {
-    'open_ai_key': open_ai_api_key,
-    'open_ai_model': 'text-davinci-003',
-    'open_ai_model_personality': open_ai_model_personality,
-    'open_ai_model_temperature': 0.8,
-    'open_ai_model_max_tokens': 128,
-    'open_ai_model_top_p': 1,
-    'open_ai_model_frequency_penalty': 1,
-    'open_ai_model_presence_penalty': 1
-}
 
 config_llama_cpp_generate_text = {
     'llama_cpp_model_directory_path': llama_cpp_model_directory_path,
-    'llama_cpp_max_context_tokens': 1020,
+    'llama_cpp_max_context_tokens': 2048,
     'llama_cpp_epsilon_personality': llama_cpp_epsilon_personality,
     'llama_cpp_epsilon_init_chat': llama_cpp_epsilon_init_chat,
+    'llama_cpp_epsilon_ctx_days': 2,
     'llama_cpp_stop': llama_cpp_stop,
     'llama_cpp_max_predict_tokens': 125,
     'llama_cpp_temperature': 0.5,
@@ -79,6 +69,7 @@ config_llama_cpp_generate_text = {
 
 config_dba = {
     'dbHsot': dbHsot,
+    'max_ctx_registers': 20,
     'dbName': 'epsilon_db',
     'collection_ctx_chat_name': 'ctx_chat'
 }

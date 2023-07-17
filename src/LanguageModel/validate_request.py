@@ -29,7 +29,7 @@ def check_request(request_text_queue: Queue, keywords: List[str] = ['epsilon'], 
            f"Se ha dicho una palabra clave de detención")
        # Se realiza la petición de despedida
        logging.info(
-           f"Se ha realizado una petición a " + global_config['ai_interpreter'] + " con el texto de despedida: \"{result_text}\"")
+           f"Se ha realizado una petición a {global_config['ai_interpreter']} con el texto de despedida: {result_text}")
        # Realizar petición...
        request_text_queue.put(result_text)
        global_config['is_epsilon_request'] = True
@@ -37,7 +37,7 @@ def check_request(request_text_queue: Queue, keywords: List[str] = ['epsilon'], 
     else:
         # Se realiza una petición normal al modelo de Lenguaje Epsilon
         logging.info(
-            f"Se ha realizado una petición a " + global_config['ai_interpreter'] + " con el texto: \'{result_text}\'")
+            f"Se ha realizado una petición a {global_config['ai_interpreter']} con el texto: {result_text}")
         # Realizar petición...
         request_text_queue.put(result_text)
         global_config['is_epsilon_request'] = True
